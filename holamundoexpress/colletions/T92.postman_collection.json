@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "baa87bc5-4aa0-4d79-bcea-fbcc947a6f97",
+		"name": "T92",
+		"description": "Vamos a crear nuestros modulos de API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10161565"
+	},
+	"item": [
+		{
+			"name": "HolaMundoExpress.js",
+			"item": [
+				{
+					"name": "main",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nuevomensaje",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/nuevomensaje",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"nuevomensaje"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
