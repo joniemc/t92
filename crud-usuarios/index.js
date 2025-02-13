@@ -19,10 +19,18 @@ app.get('/productos',(req,res)=>{
     const nombre = req.query.nombre;
     res.status(200).json({id: id,nombre:nombre});
 });
+
+app.get('/usuarios',(req,res)=>{
+    
+    res.status(200).json({message: 'usuarios'});
+});
+
+
 app.get('/usuarios/:id',(req,res)=>{
     const id = req.params.id;
     res.status(200).json({id: id});
 });
+
 app.listen(PORT, ()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
