@@ -14,6 +14,11 @@ app.get('/productos',(req,res)=>{
     res.status(200).json({id: id,nombre:nombre});
 });
 
+app.get('/usuarios',(req,res)=>{
+    
+    res.status(200).json({message: 'usuarios'});
+});
+
 app.listen(PORT, ()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
