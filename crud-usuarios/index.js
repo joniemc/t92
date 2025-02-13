@@ -8,6 +8,12 @@ app.get('/usuarios/:id/:edad',(req,res)=>{
     res.status(200).json({id: id, edad:edad});
 });
 
+app.get('/otra/:id/:edad',(req,res)=>{
+    const id = req.params.id;
+    const edad = req.params.edad;
+    res.status(200).json({id: id, edad:edad});
+});
+
 app.get('/productos',(req,res)=>{
     const id = req.query.id;
     const nombre = req.query.nombre;
@@ -17,6 +23,12 @@ app.get('/productos',(req,res)=>{
 app.get('/usuarios',(req,res)=>{
     
     res.status(200).json({message: 'usuarios'});
+});
+
+
+app.get('/usuarios/:id',(req,res)=>{
+    const id = req.params.id;
+    res.status(200).json({id: id});
 });
 
 app.listen(PORT, ()=>{
