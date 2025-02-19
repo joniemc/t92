@@ -1,5 +1,7 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
+
 const PORT = 3000;
 
 const productos = [
@@ -29,6 +31,16 @@ const productos = [
     }
   ];
 
+  const usuarios = [];
+
+function reedUsers(){
+    const data = fs.readFileSync('usuariosdb.json','utf-8');
+    return JSON.parse(data);
+}
+
+function saveUsers(cusers){
+    fs.writeFileSync('usuariosdb.json',JSON.stringify(cusers,null,2));
+}
 
 app.use(express.json());
 
@@ -36,6 +48,28 @@ app.get('/usuarios/:id/:edad',(req,res)=>{
     const id = req.params.id;
     const edad = req.params.edad;
     res.status(200).json({id: id, edad:edad});
+});
+
+app.get('/usuarios',(req, res)=>{
+    const users = reedUsers();
+    res.json({status:200,message:'Success',users});
+});
+
+app.post('/usuarios',(req, res)=>{
+    let usuario = req.body;
+    const users = reedUsers();
+    let findUser = users.find(user => user.id === usuario.id);
+    if(findUser){
+        res.status(403).json({status:403,message:'Error, El usuario ya existe',usuario});
+    }else{
+        users.push(usuario);
+        saveUsers(users);
+        res.json({status:200,message:'Success',usuario});
+    }
+});
+
+app.put('/usuarios',(req, res)=>{
+    
 });
 
 app.get('/otra/:id/:edad',(req,res)=>{
