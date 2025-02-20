@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const { parse } = require('path');
 const app = express();
 
 const PORT = 3000;
@@ -114,6 +115,21 @@ app.put('/productos',(req,res)=>{
         res.status(400).json({status:400,message:'Bad Request',producto});
     }
 
+});
+
+app.delete('/usuarios/:id',(req, res)=>{
+    const id = parseInt(req.params.id);
+    const usuarios = reedUsers();
+
+    const usuariosFiltrados = usuarios.filter(user => user.id !== id);
+
+    if(usuariosFiltrados.length !== usuarios.length){
+        saveUsers(usuariosFiltrados);
+        res.json({status:200,message:'Success'});
+    }
+    else{
+        res.status(400).json({status:400,message:'Registro no encontrado...'});
+    }
 });
 
 app.get('/productospornombre/:nombre',(req,res)=>{
