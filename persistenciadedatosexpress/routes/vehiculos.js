@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.get('/vehiculos/',(req,res)=>{
+router.get('/vehiculos/',authMiddleware,(req,res)=>{
     const sql = 'SELECT * FROM vehiculo';
     pool.query(sql,(err, results)=>{
         if(err){
@@ -13,7 +14,7 @@ router.get('/vehiculos/',(req,res)=>{
     });
 });
 
-router.post('/vehiculos',(req, res)=>{
+router.post('/vehiculos',authMiddleware,(req, res)=>{
     let vehiculo = req.body;
 
     if(!vehiculo.marca || !vehiculo.modelo || !vehiculo.anio){
@@ -32,7 +33,7 @@ router.post('/vehiculos',(req, res)=>{
 
 });
 
-router.put('/vehiculos',(req,res)=>{
+router.put('/vehiculos',authMiddleware,(req,res)=>{
     
     let vehiculo = req.body;
 
@@ -55,7 +56,7 @@ router.put('/vehiculos',(req,res)=>{
     });
 });
 
-router.get('/vehiculos/:codigo',(req,res)=>{
+router.get('/vehiculos/:codigo',authMiddleware,(req,res)=>{
     let codigo = req.params.codigo;
     if(!codigo){
         return res.status(403).json({status:403,message:'El codigo del vehiculo es un parametro requerido...'});
@@ -72,7 +73,7 @@ router.get('/vehiculos/:codigo',(req,res)=>{
     });
 });
 
-router.delete('/vehiculos/:codigo',(req,res)=>{
+router.delete('/vehiculos/:codigo',authMiddleware,(req,res)=>{
     let codigo = req.params.codigo;
     if(!codigo){
         return res.status(403).json({status:403,message:'El codigo del vehiculo es un parametro requerido...'});
