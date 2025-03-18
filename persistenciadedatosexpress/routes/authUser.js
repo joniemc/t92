@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
-
 router.post('/login',async (req,res)=>{
     const {username,password} = req.body;
 
