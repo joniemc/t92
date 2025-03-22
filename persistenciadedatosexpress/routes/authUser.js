@@ -55,4 +55,17 @@ router.post('/usuarios',authMiddleware ,async (req,res)=>{
     });
 });
 
+router.get('/usuarios',authMiddleware ,async (req,res)=>{
+    
+    const sql = 'select codigo, username, email, telefono_movil from tbl_usuarios ';
+
+    pool.query(sql,  (err,resultado)=>{
+        if(err){
+            return res.status(500).json({status:500,message:'Error del servidor'});
+        }
+
+        res.json({status:200,message:'Success', data: resultado});
+    });
+});
+
 module.exports = router;
