@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   username: string = '';
-  password: string = '';
+  contrasenia: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService,
@@ -22,7 +22,7 @@ export class LoginComponent {
   login() {
     const credentials = {
       username: this.username,
-      password: this.password
+      password: this.contrasenia
     };
     this.errorMessage = '';
     this.authService.login(credentials).subscribe({

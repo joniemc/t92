@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api/usuarios';
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -17,6 +17,16 @@ export class UserService {
       Authorization: `Bearer ${token}` // Agrega el token en el header
     });
 
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get(this.apiUrl+'/usuarios', { headers });
+  }
+
+  getVehiculos(): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}` // Agrega el token en el header
+    });
+
+    return this.http.get(this.apiUrl+'/vehiculos', { headers });
   }
 }
